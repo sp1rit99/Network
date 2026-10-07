@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<!--
+  ╔══════════════════════════════════════════════════════════╗
+  ║  বাংলা গাইড: যেখানে ✏️ চিহ্ন আছে শুধু সেখানেই বদলান        ║
+  ║  সব বদলানোর জায়গা নিচের "CONFIG" অংশে (স্ক্রিপ্টের শুরুতে) ║
+  ║  ✏️ নাম  ✏️ ছবি  ✏️ লিংক  ✏️ ইমেইল  ✏️ বায়ো  ✏️ তথ্য     ║
+  ║  ✏️ লেখা  ✏️ রং  ✏️ আওয়াজ                                 ║
+  ╚══════════════════════════════════════════════════════════╝
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ryan Shahriar Chowdhury</title><!-- ✏️ নাম: ট্যাবের নাম আপনা-আপনি CONFIG থেকে বদলে যায় -->
+<meta name="description" content="About me, with links to my social media and email."><!-- ✏️ লেখা: গুগলে যে বিবরণ দেখাবে -->
+<script>document.documentElement.className = "js";</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&family=Manrope:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  /* ✏️ রং: পুরো সাইটের রং এখানে। চাইলে শুধু এই লাইনগুলো বদলান */
+  :root { --bg:#0b1622; --surface:#112031; --surface2:#17304a; --line:#25405c; --text:#e9eef3; --muted:#9fb2c4;
+          --amber:#f2a33c; --rust:#e0612b; --steel:#4da3e8; --teal:#2fb3a0; --dim:0;
+          --grad:linear-gradient(120deg,#f2a33c,#e0612b); --grad2:linear-gradient(120deg,#4da3e8,#2fb3a0);
+          --display:"Sora","Arial Black",sans-serif; --body:"Manrope","Helvetica Neue",Arial,sans-serif; --pop:cubic-bezier(.3,1.6,.5,1); }
+  /* স্ক্রল করলে পেজ গাঢ় হয় (সবচেয়ে গাঢ় রং = #02060b) */
+  @supports (color:color-mix(in srgb,red,blue)) {
+    :root { --bg:color-mix(in srgb,#0b1622 calc(100% - var(--dim)*80%),#02060b);
+            --surface:color-mix(in srgb,#112031 calc(100% - var(--dim)*55%),#04080d); }
+  }
+  * { box-sizing:border-box; }
+  html { background:var(--bg); }
+  body { margin:0; color:var(--text); font:400 1rem/1.6 var(--body); overflow-x:hidden; }
+  body::before { content:""; position:fixed; inset:0; z-index:5; pointer-events:none; opacity:.08;
+                 background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  a:focus-visible, button:focus-visible { outline:3px solid var(--amber); outline-offset:3px; }
+  header, main, footer, .bandwrap { position:relative; z-index:1; }
+  .wrap { max-width:64rem; margin:0 auto; padding:0 1.25rem; }
+  .sprite { position:absolute; width:0; height:0; }
+
+  /* Living background */
+  .aurora { position:fixed; inset:0; z-index:-1; overflow:hidden; pointer-events:none; }
+  .blob { position:absolute; border-radius:50%; will-change:transform; }
+  .a1 { width:42rem; height:42rem; left:-10rem; top:-8rem; background:radial-gradient(circle,rgba(77,163,232,.28),transparent 65%); animation:d1 26s ease-in-out infinite alternate; }
+  .a2 { width:46rem; height:46rem; right:-14rem; top:20%; background:radial-gradient(circle,rgba(242,163,60,.2),transparent 65%); animation:d2 32s ease-in-out infinite alternate; }
+  .a3 { width:38rem; height:38rem; left:25%; bottom:-14rem; background:radial-gradient(circle,rgba(47,179,160,.2),transparent 65%); animation:d1 38s ease-in-out infinite alternate-reverse; }
+  .shade { position:absolute; inset:0; background:#02060b; opacity:calc(var(--dim)*.7); }
+  @keyframes d1 { to { transform:translate(8rem,6rem) scale(1.15); } }
+  @keyframes d2 { to { transform:translate(-9rem,-5rem) scale(1.1); } }
+  .glow { position:fixed; left:0; top:0; width:28rem; height:28rem; margin:-14rem 0 0 -14rem; border-radius:50%; opacity:0; pointer-events:none; z-index:0;
+          background:radial-gradient(circle,rgba(77,163,232,.15),transparent 65%); transform:translate(var(--gx,50vw),var(--gy,30vh)); }
+
+  /* Hero */
+  .hero { overflow:hidden; border-bottom:1px solid var(--line); }
+  .cover { position:absolute; inset:0; background:center/cover no-repeat; }
+  .cover::after { content:""; position:absolute; inset:0; background:linear-gradient(90deg,var(--bg) 18%,rgba(11,22,34,.7) 55%,rgba(11,22,34,.15)); }
+  .hero-in { position:relative; display:flex; align-items:center; justify-content:space-between; gap:2rem; padding-top:3.5rem; padding-bottom:3.5rem; }
+  h1 { margin:0; font:800 clamp(2.8rem,10vw,6.5rem)/.95 var(--display); letter-spacing:-.03em; color:#f4f8ff; text-shadow:0 0 40px rgba(77,163,232,.45); }
+  .word { display:block; }
+  .l { display:inline-block; cursor:default; transition:transform .3s var(--pop), color .2s; }
+  .l:hover { transform:translateY(-.1em) rotate(-6deg); color:var(--amber); }
+  .role { display:flex; flex-wrap:wrap; align-items:center; gap:.8rem; max-width:none; margin:1.2rem 0 1.6rem; font:700 clamp(1.3rem,3.6vw,2rem) var(--display); color:var(--muted); }
+  .pill { position:relative; display:inline-block; padding:.2rem 1.3rem; border:2px solid transparent; border-radius:999px; transform:rotate(-2.5deg);
+          background:linear-gradient(var(--bg),var(--bg)) padding-box, var(--grad) border-box;
+          box-shadow:0 0 30px rgba(242,163,60,.28), 0 0 0 6px rgba(242,163,60,.07); transition:transform .3s var(--pop); }
+  .pill:hover { transform:rotate(1deg) scale(1.06); }
+  .pill::before, .pill::after { content:""; position:absolute; background:var(--grad2); clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%); }
+  .pill::before { width:1.1rem; height:1.1rem; top:-.7rem; right:.6rem; }
+  .pill::after { width:.7rem; height:.7rem; bottom:-.45rem; left:.9rem; }
+  #role { display:inline-block; background:var(--grad); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent; }
+  #role.pop { animation:rpop .5s var(--pop); }
+  @keyframes rpop { from { transform:translateY(60%) rotate(8deg); opacity:0; } }
+  .cta { padding:.8rem 1.7rem; border:0; border-radius:999px; background:var(--grad); color:#0b1622; font:700 1rem var(--body); cursor:pointer; transition:transform .25s var(--pop), box-shadow .25s; }
+  .cta:hover { transform:translateY(-3px) scale(1.04); box-shadow:0 10px 30px rgba(242,163,60,.35); }
+
+  /* Flip avatar: hops twice after load, then rests. Click flips it. */
+  .fw { flex:none; padding-top:1rem; }
+  .flip { width:11rem; aspect-ratio:1; padding:0; border:0; background:none; cursor:pointer; perspective:800px; }
+  .card { display:block; position:relative; width:100%; height:100%; transform-style:preserve-3d; transition:transform .7s ease-in-out; animation:tease 2.5s ease-in-out 1.2s 2; }
+  .flip.on .card { transform:rotateY(180deg); }
+  .flip.seen .card { animation:none; }
+  @keyframes tease { 0%, 40%, 100% { transform:translateY(0) rotateY(0); } 20% { transform:translateY(-14px) rotateY(45deg); } }
+  .face { position:absolute; inset:0; display:grid; place-items:center; overflow:hidden; border-radius:50%; border:4px solid #f4f8ff;
+          box-shadow:0 0 0 1px var(--line), 0 14px 40px rgba(242,163,60,.3);
+          -webkit-backface-visibility:hidden; backface-visibility:hidden; font:800 3.2rem var(--display); color:#0b1622; }
+  .face img { width:100%; height:100%; object-fit:cover; display:block; }
+  .front { background:var(--grad); }
+  .back { background:var(--grad2); transform:rotateY(180deg); }
+
+  /* Crossing tilted bands */
+  .bandwrap { overflow:hidden; padding:2.8rem 0; }
+  .band { margin:0 -4rem; overflow:hidden; white-space:nowrap; color:#0b1622; box-shadow:0 12px 40px rgba(0,0,0,.4); }
+  .b1 { background:var(--grad); transform:rotate(-3.5deg); }
+  .b2 { margin-top:-1.2rem; background:var(--grad2); transform:rotate(2.5deg); }
+  .track { display:inline-flex; animation:slide 32s linear infinite; }
+  .b2 .track { animation-direction:reverse; }
+  .bandwrap:hover .track { animation-play-state:paused; }
+  .track p { flex:none; margin:0; padding:.85rem 0; font:800 clamp(1.5rem,4.2vw,2.6rem) var(--display); letter-spacing:-.02em; }
+  .track i { display:inline-block; width:.5em; height:.5em; margin:0 1.3rem; background:#0b1622; clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%); }
+  @keyframes slide { to { transform:translateX(-50%); } }
+
+  /* Sections */
+  main { padding-top:3rem; }
+  section { margin-bottom:2.8rem; }
+  .js .rv { opacity:0; transform:translateY(26px); transition:opacity .7s, transform .7s; }
+  .js .rv.in { opacity:1; transform:none; }
+  .two { display:grid; grid-template-columns:1fr 1fr; gap:2rem; }
+  h2 { margin:0 0 1rem; font:800 1.7rem/1.1 var(--display); letter-spacing:-.02em; }
+  h2::after { content:""; display:block; width:3rem; height:4px; margin-top:.55rem; border-radius:4px; background:var(--grad); }
+  p { margin:0 0 .9rem; max-width:36rem; }
+  .info { display:grid; grid-template-columns:1fr 1fr; gap:1px; margin:0; background:var(--line); border:1px solid var(--line); border-radius:.9rem; overflow:hidden; }
+  .info div { padding:.75rem 1rem; background:var(--surface); transition:background .2s; }
+  .info div:hover { background:var(--surface2); }
+  .info dt { font-size:.85rem; color:var(--muted); }
+  .info dd { margin:0; font-weight:600; }
+
+  .tiles { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(auto-fit,minmax(12.5rem,1fr)); gap:.85rem; }
+  .tiles a { display:flex; align-items:center; gap:.9rem; padding:.95rem 1rem; background:var(--surface); border:1px solid var(--line); border-radius:.9rem;
+             color:var(--text); text-decoration:none; transition:transform .25s var(--pop), background .2s, color .2s, border-color .2s; }
+  .tiles a:hover, .tiles a:focus-visible { background:var(--b); color:var(--f); border-color:transparent; transform:translateY(-6px) rotate(-1.5deg); }
+  .ic { flex:none; width:1.9rem; height:1.9rem; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; color:var(--c); transition:transform .4s var(--pop); }
+  .tiles a:hover .ic, .tiles a:focus-visible .ic { color:inherit; transform:scale(1.25) rotate(-8deg); }
+  .tiles b { display:block; font:700 1.05rem/1.2 var(--display); }
+  .tiles span { font-size:.85rem; opacity:.75; overflow-wrap:anywhere; }
+
+  .mails { display:grid; grid-template-columns:1fr 1fr; gap:.85rem; }
+  .mail { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1rem 1.2rem; background:var(--surface); border:1px solid var(--line); border-radius:.9rem; transition:border-color .2s, transform .25s var(--pop); }
+  .mail:hover { border-color:var(--amber); transform:translateY(-3px); }
+  .mail small { display:block; color:var(--muted); }
+  .mail a { color:var(--steel); font-weight:600; overflow-wrap:anywhere; }
+  .mail button { flex:none; padding:.45rem 1.1rem; border:0; border-radius:999px; background:var(--grad); color:#0b1622; font:700 .9rem var(--body); cursor:pointer; transition:transform .2s var(--pop); }
+  .mail button:hover { transform:scale(1.1); }
+  .alert { max-width:none; margin:0 0 2rem; padding:1rem 1.2rem; background:var(--surface); border-left:4px solid var(--amber); border-radius:.5rem; color:var(--muted); font-size:.92rem; }
+  .alert b { color:var(--text); }
+
+  /* Intense glitch transition */
+  .glitch { position:fixed; inset:0; z-index:100; pointer-events:none; overflow:hidden; visibility:hidden; }
+  .glitch.run { visibility:visible; }
+  .glitch::before { content:""; position:absolute; inset:0; opacity:0; background:repeating-linear-gradient(0deg,rgba(0,0,0,.28) 0 2px,transparent 2px 5px); }
+  .glitch.run::before { animation:scan .9s steps(9) forwards; }
+  .glitch i { position:absolute; left:0; width:100%; top:var(--t); height:var(--h); background:var(--c); transform:translateX(-100%); }
+  .glitch.run i { animation:sweep .9s steps(7) var(--d) forwards; }
+  @keyframes sweep { 0% { transform:translateX(-100%); } 25% { transform:translateX(8%); } 40% { transform:translateX(-12%); } 55% { transform:translateX(20%); } 75% { transform:translateX(-4%); } 100% { transform:translateX(100%); } }
+  @keyframes scan { 0% { opacity:.9; } 20% { opacity:.2; } 40% { opacity:.8; } 60% { opacity:.1; } 80% { opacity:.6; } 100% { opacity:0; } }
+  body.glitching header, body.glitching main { animation:jit .09s steps(2) 10; }
+  body.glitching h1 { animation:rgb .15s steps(2) 6; }
+  @keyframes jit { 0% { transform:translate(0); } 50% { transform:translate(-6px,2px); } 100% { transform:translate(5px,-2px); } }
+  @keyframes rgb { 0% { text-shadow:5px 0 #ff5d4d,-5px 0 #4da3e8; } 50% { text-shadow:-5px 0 #ff5d4d,5px 0 #4da3e8; } 100% { text-shadow:0 0 40px rgba(77,163,232,.45); } }
+  #social.gl-in { animation:gin .6s steps(8); }
+  @keyframes gin {
+    0% { opacity:0; transform:translateX(-14px) skewX(10deg); }
+    20% { opacity:1; transform:translateX(12px) skewX(-8deg); clip-path:inset(20% 0 40% 0); }
+    40% { transform:translateX(-8px); clip-path:inset(0 0 70% 0); }
+    60% { transform:translateX(8px) skewX(4deg); clip-path:inset(50% 0 0 0); }
+    100% { transform:none; clip-path:inset(0); }
+  }
+  @media (max-width:46rem) {
+    .two, .mails, .info { grid-template-columns:1fr; }
+    .hero-in { flex-direction:column-reverse; align-items:flex-start; }
+    .cover::after { background:linear-gradient(180deg,rgba(11,22,34,.15),var(--bg) 70%); }
+  }
+  @media (prefers-reduced-motion:reduce) { * { transition:none !important; animation:none !important; } .js .rv { opacity:1; transform:none; } }
+</style>
+</head>
+<body>
+<!-- আইকনগুলো এই পেজের ভেতরেই আঁকা, তাই ইন্টারনেট ছাড়াও দেখা যাবে। এখানে হাত দেওয়ার দরকার নেই -->
+<svg class="sprite" aria-hidden="true">
+  <symbol id="i-fb" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r=".7" fill="currentColor"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M3 21l1.6-4.8A9 9 0 1 1 8 19.6z"/><path d="M9 8.5c.2 3 2.6 5.6 5.8 6.3l1.3-1.6-2.2-1.1-1 .9c-1-.5-1.9-1.4-2.4-2.4l.9-1-1-2.2z"/></symbol>
+  <symbol id="i-pi" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M10.6 19.5l1.7-7.4"/><path d="M9.6 13.8c-1.5-2.2-.4-6.2 3.4-6.2 2.7 0 3.9 2 3.4 4.3-.5 2.2-2.1 3.1-3.7 2.6"/></symbol>
+  <symbol id="i-re" viewBox="0 0 24 24"><ellipse cx="12" cy="14" rx="8" ry="5.5"/><circle cx="4.3" cy="11.8" r="1.6"/><circle cx="19.7" cy="11.8" r="1.6"/><path d="M12 8.5l1.4-4.6 3.6.9"/><circle cx="18" cy="5" r="1.3"/><circle cx="9" cy="13.5" r=".9" fill="currentColor" stroke="none"/><circle cx="15" cy="13.5" r=".9" fill="currentColor" stroke="none"/><path d="M9.2 16.6c1.7 1.1 3.9 1.1 5.6 0"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M4 4h4.2l11.8 16h-4.2z"/><path d="M19.6 4l-6.6 7.4M4.4 20l6.6-7.4"/></symbol>
+  <symbol id="i-sn" viewBox="0 0 24 24"><path d="M12 3c-3 0-5 2.2-5 5.3v2.2c-.6.2-1.6.2-2.4.5.4.9 1.7 1.2 2.4 1.4-.3 1.2-1.4 2.3-2.9 3 .9.6 2.2.5 3 .9.3.5.3 1.5 1.1 1.5 1 0 1.7-.7 3.8-.7s2.8.7 3.8.7c.8 0 .8-1 1.1-1.5.8-.4 2.1-.3 3-.9-1.5-.7-2.6-1.8-2.9-3 .7-.2 2-.5 2.4-1.4-.8-.3-1.8-.3-2.4-.5V8.3C17 5.2 15 3 12 3z"/></symbol>
+  <symbol id="i-bl" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M8.5 9h4M8.5 15h7"/></symbol>
+</svg>
+
+<div class="aurora" aria-hidden="true"><i class="blob a1"></i><i class="blob a2"></i><i class="blob a3"></i><i class="shade"></i></div>
+<div class="glow" aria-hidden="true"></div>
+<div class="glitch" id="glitch" aria-hidden="true">
+  <i style="--t:3%;--h:8%;--c:#f2a33c;--d:0s"></i><i style="--t:14%;--h:14%;--c:#4da3e8;--d:.04s"></i>
+  <i style="--t:30%;--h:6%;--c:#ff5d4d;--d:.08s"></i><i style="--t:40%;--h:18%;--c:#e9eef3;--d:.12s"></i>
+  <i style="--t:60%;--h:9%;--c:#2fb3a0;--d:.16s"></i><i style="--t:70%;--h:16%;--c:#e0612b;--d:.2s"></i>
+  <i style="--t:88%;--h:10%;--c:#4da3e8;--d:.24s"></i>
+</div>
+
+<header class="hero">
+  <div class="cover" id="cover" aria-hidden="true"></div>
+  <div class="wrap hero-in">
+    <div>
+      <h1 id="name"></h1>
+      <p class="role">I'm a <span class="pill"><span id="role"></span></span></p>
+      <button class="cta" id="showSocial" type="button" aria-expanded="false" aria-controls="social">Click & Find</button><!-- ✏️ লেখা: বোতামের লেখা চাইলে বদলান -->
+    </div>
+    <div class="fw">
+      <button class="flip" type="button" aria-pressed="false" aria-label="Flip my profile picture">
+        <span class="card"><span class="face front" id="front"></span><span class="face back" id="back"></span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="bandwrap" id="bands" aria-hidden="true"></div>
+
+<main class="wrap">
+  <div class="two">
+    <section class="rv"><h2>Bio</h2><div id="bio"></div></section><!-- ✏️ লেখা: "Bio" শিরোনাম বদলাতে চাইলে এখানে -->
+    <section class="rv"><h2>Basic information</h2><dl class="info" id="info"></dl></section><!-- ✏️ লেখা: শিরোনাম -->
+  </div>
+  <section id="social" hidden><h2>Social</h2><ul class="tiles" id="tiles"></ul></section><!-- ✏️ লেখা: শিরোনাম -->
+  <section class="rv"><h2>Email</h2><div class="mails" id="mails"></div></section><!-- ✏️ লেখা: শিরোনাম -->
+</main>
+
+<footer class="wrap">
+  <!-- ✏️ লেখা: কপিরাইট বার্তা চাইলে বদলান (নাম আপনা-আপনি CONFIG থেকে আসবে) -->
+  <p class="alert" role="note"><b>Copyright notice.</b> &copy; <span id="year"></span> <span id="owner"></span>. All rights reserved. The design, text and images on this page may not be copied or reused without written permission.</p>
+</footer>
+
+<script>
+/* ═══════════════════════════ CONFIG: শুধু এই অংশটুকু বদলান ═══════════════════════════ */
+var CONFIG = {
+
+  /* ✏️ নাম — প্রথম অংশ ও শেষ অংশ (বড় অক্ষরে দুই লাইনে দেখাবে) */
+  firstName: "RyanS.",
+  lastName:  "Chowdhury",
+
+  /* ✏️ নাম — ছবি না থাকলে প্রোফাইলের ভেতরে যে অক্ষর দেখাবে (যেমন "MR") */
+  initials: "YN",
+
+  /* ✏️ ছবি — প্রোফাইলের সামনের ছবি। ফাইলের নাম লিখুন (যেমন "front.jpg"), ছবিটি এই ফাইলের পাশের ফোল্ডারে রাখুন। ফাঁকা থাকলে অক্ষর দেখাবে */
+  frontPhoto: "front.jpg",
+
+  /* ✏️ ছবি — ক্লিক করলে যে পেছনের ছবি/অবতার দেখাবে (যেমন "back.jpg")। ফাঁকা থাকলে নিচের ইমোজি দেখাবে */
+  backPhoto: "cover.jpg",
+  backEmoji: "",
+
+  /* ✏️ ছবি — কভার ছবি, প্রোফাইলের পেছনে থাকবে (যেমন "cover.jpg")। ফাঁকা থাকলে শুধু রং থাকবে */
+  coverPhoto: "",
+
+  /* ✏️ লেখা — "I'm a ..." এর পরে যে শব্দগুলো একটার পর একটা ঘুরবে (যত খুশি যোগ করুন) */
+  roles: ["dreamer", "artist", "photographer", "traveller","writer","storyteller"],
+
+  /* ✏️ বায়ো — আপনার সম্পর্কে লিখুন। প্রতিটি "..." একটি প্যারাগ্রাফ */
+  bio: [
+    "Hi, I'm Ryan Shahriar Chowdhury. I'm a Bangladeshi writer, student, and deep thinker. I'm drawn to nature, literature, cinema, philosophy, and human emotions.",
+    "My writing explores life, freedom, identity, and the quiet thoughts hidden within ordinary experiences."
+  ],
+
+  /* ✏️ তথ্য — প্রতিটি লাইনে ["বিষয়", "আপনার তথ্য"]। লাইন কমাতে/বাড়াতে পারেন */
+  info: [
+    ["Full name", "Ryan Shahriar Chowdhury"],
+    ["Nickname", "0xsp1rit99"],
+    ["Birthday", "26th july 2006"],
+    ["From", "Feni, Bangladesh"],
+    ["Studying", "For Admission"],
+    ["Languages", "Bangla, English, Hindi"],
+    ["Interests", "Music, art, travel"],
+    ["Goal", "Explore myself"]
+  ],
+
+  /* ✏️ লেখা — দুইটি ঘুরন্ত ব্যান্ডের শব্দ (প্রথমটি উপরের, দ্বিতীয়টি নিচের) */
+  bands: [
+    ["Write", "Explorer", "Create", "Listen"],
+    ["Nature", "Poem", "Justice", "Myth"]
+  ],
+
+  /* ✏️ লিংক — সোশ্যাল মিডিয়া। প্রতিটি লাইনে: handle = দেখানো নাম, url = আপনার প্রোফাইলের লিংক।
+     যেটা লাগবে না, সেই পুরো লাইন মুছে দিন। (site-এর নাম বদলাবেন না) */
+  social: [
+    { site: "facebook",  handle: "/Ryan Shahriar Chowdhury",              url: "https://www.facebook.com/ryaan.chowdhuryy" },
+    { site: "instagram", handle: "@ryaan_chowdhury",            url: "https://www.instagram.com/ryaan_chowdhury" },
+    { site: "whatsapp",  handle: "Text to annoy",           url: "https://wa.me/8801855260263" },   /* ✏️ লিংক — নিজের ফোন নম্বর দিন (দেশের কোড সহ, + ছাড়া) */
+    { site: "pinterest", handle: "Ryan Shahriar Chowdhury",            url: "https://pin.it/7r0iRWbxK" },
+    { site: "reddit",    handle: "u/0xsp1rit99",           url: "https://www.reddit.com/u/0xsp1rit99/s/oRhqbLyknk" },
+    { site: "snapchat",  handle: "ryans.chowdhury",             url: "https://www.snapchat.com/add/ryans.chowdhury?share_id=AuXkRJ48vfU&locale=en-US" },
+    { site: "blogger",   handle: "Ryan Shahriar Chowdhury",  url: "https://ryaanchowdhury.blogspot.com" }
+  ],
+
+  /* ✏️ ইমেইল — দুইটি ইমেইল। label = ধরন, address = আপনার ইমেইল ঠিকানা */
+  emails: [
+    { label: "Personal", address: "ryanchowdhury80@gmail.com" },
+    { label: "Work",     address: "ryaans.chowdhury@gmail.com" }
+  ],
+
+  /* ✏️ নাম — কপিরাইটে যে নাম দেখাবে (ফাঁকা রাখলে উপরের নামই বসবে) */
+  owner: ""
+};
+/* ═══════════════════════════ CONFIG শেষ। এর নিচে হাত না দিলেও চলবে ═══════════════════════════ */
+
+/* সোশ্যাল সাইটের নাম, আইকন ও রং। (এখানে বদলানোর দরকার নেই) */
+var BRAND = {
+  facebook:  { n: "Facebook",  i: "fb", b: "#1877f2", c: "#5aa2ff", f: "#fff" },
+  instagram: { n: "Instagram", i: "ig", b: "linear-gradient(45deg,#f9a825,#ee2a7b,#6228d7)", c: "#ff6aa6", f: "#fff" },
+  whatsapp:  { n: "WhatsApp",  i: "wa", b: "#25d366", c: "#25d366", f: "#0b1622" },
+  pinterest: { n: "Pinterest", i: "pi", b: "#e60023", c: "#ff5167", f: "#fff" },
+  reddit:    { n: "Reddit",    i: "re", b: "#ff4500", c: "#ff7a45", f: "#0b1622" },
+  x:         { n: "X",         i: "x",  b: "#eef3f8", c: "#eef3f8", f: "#0b1622" },
+  snapchat:  { n: "Snapchat",  i: "sn", b: "#fffc00", c: "#fffc00", f: "#0b1622" },
+  blogger:   { n: "Blogger",   i: "bl", b: "#ff7a1a", c: "#ff8a33", f: "#0b1622" }
+};
+
+var $ = function (s) { return document.querySelector(s); };
+var esc = function (t) { return String(t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
+var still = matchMedia("(prefers-reduced-motion: reduce)").matches, fine = matchMedia("(pointer:fine)").matches;
+var full = CONFIG.firstName + " " + CONFIG.lastName;
+
+/* ---------- পেজ সাজানো ---------- */
+document.title = full;
+var nameEl = $("#name"); nameEl.setAttribute("aria-label", full);
+[CONFIG.firstName, CONFIG.lastName].forEach(function (w) {
+  var s = document.createElement("span"); s.className = "word";
+  Array.from(w).forEach(function (c) { var l = document.createElement("span"); l.className = "l"; l.textContent = c; l.setAttribute("aria-hidden", "true"); s.appendChild(l); });
+  nameEl.appendChild(s);
+});
+function photo(el, src, alt, fallback) {
+  if (!src) { el.textContent = fallback; return; }
+  var i = document.createElement("img"); i.src = src; i.alt = alt;
+  i.onerror = function () { i.remove(); el.textContent = fallback; };
+  el.appendChild(i);
+}
+photo($("#front"), CONFIG.frontPhoto, "Photo of " + full, CONFIG.initials);
+photo($("#back"), CONFIG.backPhoto, "Avatar of " + full, CONFIG.backEmoji);
+if (CONFIG.coverPhoto) $("#cover").style.backgroundImage = 'url("' + CONFIG.coverPhoto + '")';
+$("#bio").innerHTML = CONFIG.bio.map(function (t) { return "<p>" + esc(t) + "</p>"; }).join("");
+$("#info").innerHTML = CONFIG.info.map(function (r) { return "<div><dt>" + esc(r[0]) + "</dt><dd>" + esc(r[1]) + "</dd></div>"; }).join("");
+$("#bands").innerHTML = CONFIG.bands.slice(0, 2).map(function (w, k) {
+  var p = "<p>" + w.map(esc).join("<i></i>") + "<i></i></p>";
+  return '<div class="band b' + (k + 1) + '"><div class="track">' + p + p + "</div></div>";
+}).join("");
+$("#tiles").innerHTML = CONFIG.social.map(function (s) {
+  var b = BRAND[s.site]; if (!b) return "";
+  return '<li><a href="' + esc(s.url) + '" target="_blank" rel="noopener" style="--b:' + b.b + ";--c:" + b.c + ";--f:" + b.f + '">' +
+    '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-' + b.i + '"/></svg><div><b>' + b.n + "</b><span>" + esc(s.handle) + "</span></div></a></li>";
+}).join("");
+$("#mails").innerHTML = CONFIG.emails.map(function (m) {
+  return '<div class="mail"><div><small>' + esc(m.label) + '</small><a href="mailto:' + esc(m.address) + '">' + esc(m.address) + '</a></div><button type="button" data-copy="' + esc(m.address) + '">Copy</button></div>';
+}).join("");
+$("#owner").textContent = CONFIG.owner || full;
+$("#year").textContent = new Date().getFullYear();
+
+/* ---------- নড়াচড়া ---------- */
+var ri = 0, role = $("#role"); role.textContent = CONFIG.roles[0];
+if (!still && CONFIG.roles.length > 1) setInterval(function () {
+  ri = (ri + 1) % CONFIG.roles.length; role.textContent = CONFIG.roles[ri];
+  role.classList.remove("pop"); void role.offsetWidth; role.classList.add("pop");
+}, 2400);
+
+if (fine && !still) {                       /* কার্সরের পেছনে নরম আলো */
+  var g = $(".glow"), gx = 0, gy = 0, gt = 0;
+  addEventListener("pointermove", function (e) {
+    gx = e.clientX; gy = e.clientY;
+    if (!gt) gt = requestAnimationFrame(function () { g.style.setProperty("--gx", gx + "px"); g.style.setProperty("--gy", gy + "px"); g.style.opacity = 1; gt = 0; });
+  });
+}
+
+var rv = document.querySelectorAll(".rv");   /* স্ক্রল করলে সেকশন উঠে আসে */
+if ("IntersectionObserver" in window && !still) {
+  var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }); }, { threshold: .15 });
+  rv.forEach(function (el) { io.observe(el); });
+} else rv.forEach(function (el) { el.classList.add("in"); });
+
+/* স্ক্রল করে নিচে নামলে পুরো পেজ ধীরে ধীরে সবচেয়ে গাঢ় রঙে যায় */
+var root = document.documentElement, dt = 0;
+function dim() { dt = 0; var max = root.scrollHeight - innerHeight; root.style.setProperty("--dim", max > 0 ? Math.min(1, scrollY / max).toFixed(3) : 0); }
+addEventListener("scroll", function () { if (!dt) dt = requestAnimationFrame(dim); }, { passive: true }); dim();
+
+/* ---------- আওয়াজ (ফাইল লাগে না, ব্রাউজারেই তৈরি হয়) ---------- */
+function audio() {
+  var AC = window.AudioContext || window.webkitAudioContext; if (!AC) return null;
+  var c = audio.c || (audio.c = new AC()); if (c.state === "suspended") c.resume();
+  return c;
+}
+function tone(ctx, m, type, f1, f2, t, dur, vol) {      /* ছোট সাহায্যকারী: একটি সুর */
+  var o = ctx.createOscillator(), g = ctx.createGain(); o.type = type;
+  o.frequency.setValueAtTime(f1, t); if (f2) o.frequency.exponentialRampToValueAtTime(f2, t + dur);
+  g.gain.setValueAtTime(vol, t); g.gain.exponentialRampToValueAtTime(.001, t + dur);
+  o.connect(g); g.connect(m); o.start(t); o.stop(t + dur + .02);
+}
+function noise(ctx, secs) {
+  var len = Math.floor(ctx.sampleRate * secs), b = ctx.createBuffer(1, len, ctx.sampleRate), d = b.getChannelData(0);
+  for (var i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
+  var n = ctx.createBufferSource(); n.buffer = b; return n;
+}
+
+/* সোশ্যাল লিংকে ক্লিক করলে: নরম কিন্তু ভারী "ঠক" আওয়াজ। ✏️ আওয়াজ — .2 কমালে আস্তে, বাড়ালে জোরে */
+function clickTone() {
+  try {
+    var ctx = audio(); if (!ctx) return;
+    var t = ctx.currentTime, m = ctx.createGain(); m.gain.value = .2; m.connect(ctx.destination);
+    tone(ctx, m, "sine", 190, 70, t, .18, .9);
+    tone(ctx, m, "triangle", 880, 660, t, .16, .35);
+  } catch (e) {}
+}
+
+/* প্রোফাইল ঘুরলে: হুশ + লেজার + ঝিলিক + ধপ। ✏️ আওয়াজ — .16 বদলে জোর কমান/বাড়ান */
+function flipSound(back) {
+  try {
+    var ctx = audio(); if (!ctx) return;
+    var t = ctx.currentTime, m = ctx.createGain(); m.gain.value = .16; m.connect(ctx.destination);
+    var n = noise(ctx, .6), bp = ctx.createBiquadFilter(), ng = ctx.createGain(); bp.type = "bandpass"; bp.Q.value = 3;
+    bp.frequency.setValueAtTime(back ? 300 : 2500, t); bp.frequency.exponentialRampToValueAtTime(back ? 3500 : 300, t + .45);
+    ng.gain.setValueAtTime(.0001, t); ng.gain.exponentialRampToValueAtTime(.9, t + .18); ng.gain.exponentialRampToValueAtTime(.001, t + .55);
+    n.connect(bp); bp.connect(ng); ng.connect(m); n.start(t); n.stop(t + .6);
+    tone(ctx, m, "sawtooth", back ? 200 : 1600, back ? 1800 : 120, t, .3, .35);
+    var notes = [784, 988, 1175, 1319, 1568, 1976, 2349, 2637];
+    for (var k = 0; k < 8; k++) tone(ctx, m, k % 2 ? "triangle" : "sine", notes[back ? k : 7 - k], 0, t + .18 + k * .05, .18, .4);
+    tone(ctx, m, "sine", 320, 60, t + .45, .2, .8);
+  } catch (e) {}
+}
+
+/* "Find me online" চাপলে: গ্লিচ আওয়াজ। ✏️ আওয়াজ — .12 বদলে জোর কমান/বাড়ান */
+function glitchSound() {
+  try {
+    var ctx = audio(); if (!ctx) return;
+    var t = ctx.currentTime, m = ctx.createGain(); m.gain.value = .12; m.connect(ctx.destination);
+    var n = noise(ctx, .9), fl = ctx.createBiquadFilter(), ng = ctx.createGain(); fl.type = "bandpass"; fl.Q.value = 2;
+    n.connect(fl); fl.connect(ng); ng.connect(m); ng.gain.setValueAtTime(0, t);
+    for (var x = 0; x < .8;) { var on = .02 + Math.random() * .07; ng.gain.setValueAtTime(1, t + x); ng.gain.setValueAtTime(0, t + x + on); x += on + .01 + Math.random() * .06; }
+    fl.frequency.setValueAtTime(800, t); fl.frequency.exponentialRampToValueAtTime(5000, t + .5); fl.frequency.exponentialRampToValueAtTime(300, t + .9);
+    n.start(t); n.stop(t + .9);
+    for (var k = 0; k < 7; k++) tone(ctx, m, k % 2 ? "square" : "sawtooth", 200 + Math.random() * 1800, 0, t + k * .1 + Math.random() * .04, .07, .5);
+    tone(ctx, m, "sine", 1400, 90, t + .45, .5, .6);
+  } catch (e) {}
+}
+
+/* ---------- ক্লিক ---------- */
+var f = $(".flip");                          /* প্রোফাইল ঘোরানো */
+f.addEventListener("click", function () {
+  f.classList.add("seen"); f.classList.toggle("on");
+  f.setAttribute("aria-pressed", f.classList.contains("on"));
+  flipSound(f.classList.contains("on"));
+});
+
+$("#tiles").addEventListener("click", function (e) { if (e.target.closest("a")) clickTone(); });
+
+var cta = $("#showSocial"), soc = $("#social"), gl = $("#glitch"), busy = false;   /* Find me online */
+function showSocial() {
+  soc.hidden = false; cta.setAttribute("aria-expanded", "true");
+  soc.scrollIntoView({ behavior: "auto", block: "start" });
+  if (!still) { soc.classList.remove("gl-in"); void soc.offsetWidth; soc.classList.add("gl-in"); }
+}
+cta.addEventListener("click", function () {
+  if (still) { showSocial(); return; }
+  if (busy) return; busy = true;
+  glitchSound(); gl.classList.add("run"); document.body.classList.add("glitching");
+  setTimeout(showSocial, 450);
+  setTimeout(function () { gl.classList.remove("run"); document.body.classList.remove("glitching"); busy = false; }, 1100);
+});
+
+document.querySelectorAll("[data-copy]").forEach(function (b) {   /* ইমেইল কপি বোতাম */
+  b.addEventListener("click", function () {
+    if (navigator.clipboard) navigator.clipboard.writeText(b.dataset.copy);
+    b.textContent = "Copied"; setTimeout(function () { b.textContent = "Copy"; }, 1500);
+  });
+});
+</script>
+</body>
+</html>
