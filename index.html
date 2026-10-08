@@ -13,21 +13,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ryan Shahriar Chowdhury</title><!-- ✏️ নাম: ট্যাবের নাম আপনা-আপনি CONFIG থেকে বদলে যায় -->
 <meta name="description" content="About me, with links to my social media and email."><!-- ✏️ লেখা: গুগলে যে বিবরণ দেখাবে -->
-<script>document.documentElement.className = "js";</script>
+<meta name="theme-color" content="#0b1622">
+<script>document.documentElement.className = "js"; try { var th = localStorage.getItem("theme"); if (th) document.documentElement.setAttribute("data-theme", th); } catch (e) {}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&family=Manrope:wght@400;600&display=swap" rel="stylesheet">
 <style>
   /* ✏️ রং: পুরো সাইটের রং এখানে। চাইলে শুধু এই লাইনগুলো বদলান */
-  :root { --bg:#0b1622; --surface:#112031; --surface2:#17304a; --line:#25405c; --text:#e9eef3; --muted:#9fb2c4;
+  :root { --b0:#0b1622; --b1:#02060b; --s0:#112031; --s1:#04080d; --bg:var(--b0); --surface:var(--s0); --surface2:#17304a; --line:#25405c; --text:#e9eef3; --muted:#9fb2c4;
+          --h1:#f4f8ff; --hsh:rgba(77,163,232,.45); --bgrgb:11,22,34; --shade:.7;
           --amber:#f2a33c; --rust:#e0612b; --steel:#4da3e8; --teal:#2fb3a0; --dim:0;
           --grad:linear-gradient(120deg,#f2a33c,#e0612b); --grad2:linear-gradient(120deg,#4da3e8,#2fb3a0);
           --display:"Sora","Arial Black",sans-serif; --body:"Manrope","Helvetica Neue",Arial,sans-serif; --pop:cubic-bezier(.3,1.6,.5,1); }
   /* স্ক্রল করলে পেজ গাঢ় হয় (সবচেয়ে গাঢ় রং = #02060b) */
   @supports (color:color-mix(in srgb,red,blue)) {
-    :root { --bg:color-mix(in srgb,#0b1622 calc(100% - var(--dim)*80%),#02060b);
-            --surface:color-mix(in srgb,#112031 calc(100% - var(--dim)*55%),#04080d); }
+    :root { --bg:color-mix(in srgb,var(--b0) calc(100% - var(--dim)*80%),var(--b1));
+            --surface:color-mix(in srgb,var(--s0) calc(100% - var(--dim)*55%),var(--s1)); }
   }
+  /* ✏️ রং: লাইট (দিনের) থিমের রং এখানে */
+  :root[data-theme="light"] { --b0:#f6f0e4; --b1:#d8ccb6; --s0:#fffaf0; --s1:#e9dfcc; --surface2:#f1e6d1; --line:#d9ccb4; --text:#1d2a37; --muted:#586878; --steel:#1b69ad;
+          --h1:#16222e; --hsh:rgba(224,97,43,.22); --bgrgb:246,240,228; --shade:.22; }
   * { box-sizing:border-box; }
   html { background:var(--bg); }
   body { margin:0; color:var(--text); font:400 1rem/1.6 var(--body); overflow-x:hidden; }
@@ -44,7 +49,7 @@
   .a1 { width:42rem; height:42rem; left:-10rem; top:-8rem; background:radial-gradient(circle,rgba(77,163,232,.28),transparent 65%); animation:d1 26s ease-in-out infinite alternate; }
   .a2 { width:46rem; height:46rem; right:-14rem; top:20%; background:radial-gradient(circle,rgba(242,163,60,.2),transparent 65%); animation:d2 32s ease-in-out infinite alternate; }
   .a3 { width:38rem; height:38rem; left:25%; bottom:-14rem; background:radial-gradient(circle,rgba(47,179,160,.2),transparent 65%); animation:d1 38s ease-in-out infinite alternate-reverse; }
-  .shade { position:absolute; inset:0; background:#02060b; opacity:calc(var(--dim)*.7); }
+  .shade { position:absolute; inset:0; background:var(--b1); opacity:calc(var(--dim)*var(--shade)); }
   @keyframes d1 { to { transform:translate(8rem,6rem) scale(1.15); } }
   @keyframes d2 { to { transform:translate(-9rem,-5rem) scale(1.1); } }
   .glow { position:fixed; left:0; top:0; width:28rem; height:28rem; margin:-14rem 0 0 -14rem; border-radius:50%; opacity:0; pointer-events:none; z-index:0;
@@ -53,12 +58,14 @@
   /* Hero */
   .hero { overflow:hidden; border-bottom:1px solid var(--line); }
   .cover { position:absolute; inset:0; background:center/cover no-repeat; }
-  .cover::after { content:""; position:absolute; inset:0; background:linear-gradient(90deg,var(--bg) 18%,rgba(11,22,34,.7) 55%,rgba(11,22,34,.15)); }
+  .cover::after { content:""; position:absolute; inset:0; background:linear-gradient(90deg,var(--bg) 18%,rgba(var(--bgrgb),.7) 55%,rgba(var(--bgrgb),.15)); }
   .hero-in { position:relative; display:flex; align-items:center; justify-content:space-between; gap:2rem; padding-top:3.5rem; padding-bottom:3.5rem; }
-  h1 { margin:0; font:800 clamp(2.8rem,10vw,6.5rem)/.95 var(--display); letter-spacing:-.03em; color:#f4f8ff; text-shadow:0 0 40px rgba(77,163,232,.45); }
+  h1 { margin:0; font:800 clamp(2.8rem,10vw,6.5rem)/.95 var(--display); letter-spacing:-.03em; color:var(--h1); text-shadow:0 0 40px var(--hsh); }
   .word { display:block; }
   .l { display:inline-block; cursor:default; transition:transform .3s var(--pop), color .2s; }
   .l:hover { transform:translateY(-.1em) rotate(-6deg); color:var(--amber); }
+  /* নামের থিম-রঙের অংশ (যেমন "S.") */
+  .l.th { background:var(--grad); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent; text-shadow:none; filter:drop-shadow(0 0 16px rgba(242,163,60,.5)); }
   .role { display:flex; flex-wrap:wrap; align-items:center; gap:.8rem; max-width:none; margin:1.2rem 0 1.6rem; font:700 clamp(1.3rem,3.6vw,2rem) var(--display); color:var(--muted); }
   .pill { position:relative; display:inline-block; padding:.2rem 1.3rem; border:2px solid transparent; border-radius:999px; transform:rotate(-2.5deg);
           background:linear-gradient(var(--bg),var(--bg)) padding-box, var(--grad) border-box;
@@ -74,13 +81,18 @@
   .cta:hover { transform:translateY(-3px) scale(1.04); box-shadow:0 10px 30px rgba(242,163,60,.35); }
 
   /* Flip avatar: hops twice after load, then rests. Click flips it. */
-  .fw { flex:none; padding-top:1rem; }
+  .fw { flex:none; padding-top:1rem; touch-action:pan-y; transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)); transition:transform .18s ease-out; will-change:transform; }
   .flip { width:11rem; aspect-ratio:1; padding:0; border:0; background:none; cursor:pointer; perspective:800px; }
-  .card { display:block; position:relative; width:100%; height:100%; transform-style:preserve-3d; transition:transform .7s ease-in-out; animation:tease 2.5s ease-in-out 1.2s 2; }
-  .flip.on .card { transform:rotateY(180deg); }
+  .card { display:block; position:relative; width:100%; height:100%; transform-style:preserve-3d; transform:rotateY(var(--rot,0deg)); transition:transform .95s cubic-bezier(.3,1.45,.5,1); animation:tease 2.5s ease-in-out 1.2s 2; }
+  /* ফ্লিপের সময় ছবি লাফিয়ে ওঠে + কাচের মতো ঝিলিক চলে যায় */
+  .flip.fly { animation:fly .95s ease-in-out; }
+  @keyframes fly { 0%,100% { translate:0 0; scale:1; } 40% { translate:0 -16px; scale:1.14; } }
+  .face::after { content:""; position:absolute; inset:0; background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.6) 50%,transparent 65%); transform:translateX(-130%); pointer-events:none; }
+  .flip.fly .face::after { animation:gloss .95s ease-in-out; }
+  @keyframes gloss { to { transform:translateX(130%); } }
   .flip.seen .card { animation:none; }
   @keyframes tease { 0%, 40%, 100% { transform:translateY(0) rotateY(0); } 20% { transform:translateY(-14px) rotateY(45deg); } }
-  .face { position:absolute; inset:0; display:grid; place-items:center; overflow:hidden; border-radius:50%; border:4px solid #f4f8ff;
+  .face { position:absolute; inset:0; display:grid; place-items:center; overflow:hidden; border-radius:50%; border:4px solid var(--h1);
           box-shadow:0 0 0 1px var(--line), 0 14px 40px rgba(242,163,60,.3);
           -webkit-backface-visibility:hidden; backface-visibility:hidden; font:800 3.2rem var(--display); color:#0b1622; }
   .face img { width:100%; height:100%; object-fit:cover; display:block; }
@@ -118,20 +130,50 @@
   .tiles a { display:flex; align-items:center; gap:.9rem; padding:.95rem 1rem; background:var(--surface); border:1px solid var(--line); border-radius:.9rem;
              color:var(--text); text-decoration:none; transition:transform .25s var(--pop), background .2s, color .2s, border-color .2s; }
   .tiles a:hover, .tiles a:focus-visible { background:var(--b); color:var(--f); border-color:transparent; transform:translateY(-6px) rotate(-1.5deg); }
+  :root[data-theme="light"] .ic { color:var(--cl,var(--c)); }
   .ic { flex:none; width:1.9rem; height:1.9rem; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; color:var(--c); transition:transform .4s var(--pop); }
   .tiles a:hover .ic, .tiles a:focus-visible .ic { color:inherit; transform:scale(1.25) rotate(-8deg); }
   .tiles b { display:block; font:700 1.05rem/1.2 var(--display); }
   .tiles span { font-size:.85rem; opacity:.75; overflow-wrap:anywhere; }
 
   .mails { display:grid; grid-template-columns:1fr 1fr; gap:.85rem; }
-  .mail { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1rem 1.2rem; background:var(--surface); border:1px solid var(--line); border-radius:.9rem; transition:border-color .2s, transform .25s var(--pop); }
+  .mail { display:flex; align-items:center; justify-content:space-between; gap:.7rem; padding:.55rem .9rem; background:var(--surface); border:1px solid var(--line); border-radius:.9rem; transition:border-color .2s, transform .25s var(--pop); }
   .mail:hover { border-color:var(--amber); transform:translateY(-3px); }
-  .mail small { display:block; color:var(--muted); }
-  .mail a { color:var(--steel); font-weight:600; overflow-wrap:anywhere; }
-  .mail button { flex:none; padding:.45rem 1.1rem; border:0; border-radius:999px; background:var(--grad); color:#0b1622; font:700 .9rem var(--body); cursor:pointer; transition:transform .2s var(--pop); }
+  .mail small { display:block; color:var(--muted); font-size:.72rem; line-height:1.2; }
+  .mail a { color:var(--steel); font-weight:600; font-size:.85rem; white-space:nowrap; }
+  .mail button { flex:none; padding:.3rem .8rem; border:0; border-radius:999px; background:var(--grad); color:#0b1622; font:700 .78rem var(--body); cursor:pointer; transition:transform .2s var(--pop); }
   .mail button:hover { transform:scale(1.1); }
   .alert { max-width:none; margin:0 0 2rem; padding:1rem 1.2rem; background:var(--surface); border-left:4px solid var(--amber); border-radius:.5rem; color:var(--muted); font-size:.92rem; }
   .alert b { color:var(--text); }
+
+  /* Click & Find বোতাম: চলন্ত গ্রেডিয়েন্ট, ঝিলিক, ঢেউ-আলো, তীর। ✏️ রং/আকার চাইলে এখানে বদলান */
+  .ctarow { display:flex; align-items:center; }
+  .cta { position:relative; overflow:hidden; display:inline-flex; align-items:center; gap:.45rem; padding:.6rem 1.25rem; font-size:.9rem; letter-spacing:.01em;
+         background:linear-gradient(120deg,#f2a33c,#e0612b,#f2a33c,#e0612b); background-size:300% 100%; animation:gshift 5s linear infinite; }
+  .cta .go { flex:none; width:1rem; height:1rem; fill:none; stroke:#0b1622; stroke-width:2.8; stroke-linecap:round; stroke-linejoin:round; animation:gonudge 1.2s ease-in-out infinite; }
+  .cta:hover .go { animation:none; transform:translateX(7px); transition:transform .25s var(--pop); }
+  .cta::after { content:""; position:absolute; top:0; left:-70%; width:40%; height:100%; transform:skewX(-20deg); background:linear-gradient(100deg,transparent,rgba(255,255,255,.6),transparent); animation:shine 3s ease-in-out infinite; }
+  .ctarow:not(.done) .cta { animation:gshift 5s linear infinite, cpulse 2s ease-out infinite, wig 4s ease-in-out infinite; }
+  @keyframes gshift { to { background-position:-300% 0; } }
+  @keyframes gonudge { 0%,100% { transform:translateX(0); } 50% { transform:translateX(6px); } }
+  @keyframes shine { 0%,55% { left:-70%; } 100% { left:130%; } }
+  @keyframes cpulse { 0% { box-shadow:0 0 0 0 rgba(242,163,60,.6), 0 8px 24px rgba(224,97,43,.35); } 70%,100% { box-shadow:0 0 0 12px rgba(242,163,60,0), 0 8px 24px rgba(224,97,43,.35); } }
+  @keyframes wig { 0%,80%,100% { rotate:0deg; } 84% { rotate:-3deg; } 88% { rotate:3deg; } 92% { rotate:-2deg; } 96% { rotate:1.5deg; } }
+
+  /* ডার্ক/লাইট স্লাইড সুইচ */
+  .tgl { position:fixed; z-index:60; top:calc(env(safe-area-inset-top,0px) + .8rem); right:.9rem; width:3.1rem; height:1.7rem; padding:0; border:0; border-radius:999px; cursor:pointer; overflow:hidden;
+         background:linear-gradient(120deg,#17304a,#0b1622); box-shadow:inset 0 0 0 2px rgba(255,255,255,.18),0 6px 20px rgba(0,0,0,.3); }
+  .tgl::before { content:""; position:absolute; inset:0; transition:opacity .4s;
+         background:radial-gradient(circle at 70% 30%,#fff 0 1.2px,transparent 1.6px),radial-gradient(circle at 55% 68%,#fff 0 1px,transparent 1.5px),radial-gradient(circle at 84% 62%,#fff 0 1.3px,transparent 1.8px); }
+  .knob { position:absolute; top:.2rem; left:.2rem; width:1.3rem; height:1.3rem; border-radius:50%; display:grid; place-items:center; background:#e9eef3; color:#0b1622; box-shadow:0 3px 8px rgba(0,0,0,.4); transition:transform .5s var(--pop), background .4s; }
+  .knob svg { grid-area:1/1; width:.8rem; height:.8rem; transition:opacity .3s, transform .5s var(--pop); }
+  .knob .sun { opacity:0; transform:rotate(-90deg) scale(.5); }
+  [data-theme="light"] .tgl { background:linear-gradient(120deg,#ffd98a,#7cc8f5); }
+  [data-theme="light"] .tgl::before { opacity:0; }
+  [data-theme="light"] .knob { transform:translateX(1.4rem); background:#fff3bf; color:#e0812b; }
+  [data-theme="light"] .knob .moon { opacity:0; transform:rotate(90deg) scale(.5); }
+  [data-theme="light"] .knob .sun { opacity:1; transform:none; }
+  html.tx, html.tx * { transition:background-color .5s, color .5s, border-color .5s, box-shadow .5s !important; }
 
   /* Intense glitch transition */
   .glitch { position:fixed; inset:0; z-index:100; pointer-events:none; overflow:hidden; visibility:hidden; }
@@ -145,7 +187,7 @@
   body.glitching header, body.glitching main { animation:jit .09s steps(2) 10; }
   body.glitching h1 { animation:rgb .15s steps(2) 6; }
   @keyframes jit { 0% { transform:translate(0); } 50% { transform:translate(-6px,2px); } 100% { transform:translate(5px,-2px); } }
-  @keyframes rgb { 0% { text-shadow:5px 0 #ff5d4d,-5px 0 #4da3e8; } 50% { text-shadow:-5px 0 #ff5d4d,5px 0 #4da3e8; } 100% { text-shadow:0 0 40px rgba(77,163,232,.45); } }
+  @keyframes rgb { 0% { text-shadow:5px 0 #ff5d4d,-5px 0 #4da3e8; } 50% { text-shadow:-5px 0 #ff5d4d,5px 0 #4da3e8; } 100% { text-shadow:0 0 40px var(--hsh); } }
   #social.gl-in { animation:gin .6s steps(8); }
   @keyframes gin {
     0% { opacity:0; transform:translateX(-14px) skewX(10deg); }
@@ -157,7 +199,7 @@
   @media (max-width:46rem) {
     .two, .mails, .info { grid-template-columns:1fr; }
     .hero-in { flex-direction:column-reverse; align-items:flex-start; }
-    .cover::after { background:linear-gradient(180deg,rgba(11,22,34,.15),var(--bg) 70%); }
+    .cover::after { background:linear-gradient(180deg,rgba(var(--bgrgb),.15),var(--bg) 70%); }
   }
   @media (prefers-reduced-motion:reduce) { * { transition:none !important; animation:none !important; } .js .rv { opacity:1; transform:none; } }
 </style>
@@ -184,13 +226,20 @@
   <i style="--t:88%;--h:10%;--c:#4da3e8;--d:.24s"></i>
 </div>
 
+<!-- ডার্ক/লাইট সুইচ -->
+<button class="tgl" id="theme" type="button" role="switch" aria-checked="false" aria-label="Light mode">
+  <span class="knob">
+    <svg class="moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 13.2A8.5 8.5 0 1 1 10.8 3a6.8 6.8 0 0 0 10.2 10.2z"/></svg>
+    <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="currentColor"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg>
+  </span>
+</button>
 <header class="hero">
   <div class="cover" id="cover" aria-hidden="true"></div>
   <div class="wrap hero-in">
     <div>
       <h1 id="name"></h1>
       <p class="role">I'm a <span class="pill"><span id="role"></span></span></p>
-      <button class="cta" id="showSocial" type="button" aria-expanded="false" aria-controls="social">Click & Find</button><!-- ✏️ লেখা: বোতামের লেখা চাইলে বদলান -->
+      <div class="ctarow"><button class="cta" id="showSocial" type="button" aria-expanded="false" aria-controls="social"><span>Click & Find</span><svg class="go" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div><!-- ✏️ লেখা: বোতামের লেখা চাইলে বদলান -->
     </div>
     <div class="fw">
       <button class="flip" type="button" aria-pressed="false" aria-label="Flip my profile picture">
@@ -213,7 +262,7 @@
 
 <footer class="wrap">
   <!-- ✏️ লেখা: কপিরাইট বার্তা চাইলে বদলান (নাম আপনা-আপনি CONFIG থেকে আসবে) -->
-  <p class="alert" role="note"><b>Copyright notice.</b> &copy; <span id="year"></span> <span id="owner"></span>. All rights reserved. The design, text and images on this page may not be copied or reused without written permission.</p>
+  <p class="alert" role="note"><b>Copyright notice.</b> &copy; <span id="year"></span> <span id="owner"></span>. A thought belongs to everyone who dares to think it, but the way it was arranged here is a small piece of one life, lived and felt. Borrow the idea, never the signature: please don't copy, reuse or pass off this page's design, words or images as your own without written permission.</p>
 </footer>
 
 <script>
@@ -223,6 +272,10 @@ var CONFIG = {
   /* ✏️ নাম — প্রথম অংশ ও শেষ অংশ (বড় অক্ষরে দুই লাইনে দেখাবে) */
   firstName: "RyanS.",
   lastName:  "Chowdhury",
+
+  /* ✏️ রং — নামের যে অংশটুকু থিমের রঙে জ্বলবে (firstName-এর ভেতরের অংশ, যেমন "S."। ফাঁকা রাখলে কিছু হবে না) */
+  accent: "S.",
+
 
   /* ✏️ নাম — ছবি না থাকলে প্রোফাইলের ভেতরে যে অক্ষর দেখাবে (যেমন "MR") */
   initials: "YN",
@@ -294,8 +347,8 @@ var BRAND = {
   whatsapp:  { n: "WhatsApp",  i: "wa", b: "#25d366", c: "#25d366", f: "#0b1622" },
   pinterest: { n: "Pinterest", i: "pi", b: "#e60023", c: "#ff5167", f: "#fff" },
   reddit:    { n: "Reddit",    i: "re", b: "#ff4500", c: "#ff7a45", f: "#0b1622" },
-  x:         { n: "X",         i: "x",  b: "#eef3f8", c: "#eef3f8", f: "#0b1622" },
-  snapchat:  { n: "Snapchat",  i: "sn", b: "#fffc00", c: "#fffc00", f: "#0b1622" },
+  x:         { n: "X",         i: "x",  b: "#eef3f8", c: "#eef3f8", cl: "#1d2a37", f: "#0b1622" },
+  snapchat:  { n: "Snapchat",  i: "sn", b: "#fffc00", c: "#fffc00", cl: "#c9a000", f: "#0b1622" },
   blogger:   { n: "Blogger",   i: "bl", b: "#ff7a1a", c: "#ff8a33", f: "#0b1622" }
 };
 
@@ -309,7 +362,8 @@ document.title = full;
 var nameEl = $("#name"); nameEl.setAttribute("aria-label", full);
 [CONFIG.firstName, CONFIG.lastName].forEach(function (w) {
   var s = document.createElement("span"); s.className = "word";
-  Array.from(w).forEach(function (c) { var l = document.createElement("span"); l.className = "l"; l.textContent = c; l.setAttribute("aria-hidden", "true"); s.appendChild(l); });
+  var ai = (w === CONFIG.firstName && CONFIG.accent) ? w.lastIndexOf(CONFIG.accent) : -1;
+  Array.from(w).forEach(function (c, n) { var l = document.createElement("span"); l.className = "l" + (ai >= 0 && n >= ai && n < ai + CONFIG.accent.length ? " th" : ""); l.textContent = c; l.setAttribute("aria-hidden", "true"); s.appendChild(l); });
   nameEl.appendChild(s);
 });
 function photo(el, src, alt, fallback) {
@@ -329,7 +383,7 @@ $("#bands").innerHTML = CONFIG.bands.slice(0, 2).map(function (w, k) {
 }).join("");
 $("#tiles").innerHTML = CONFIG.social.map(function (s) {
   var b = BRAND[s.site]; if (!b) return "";
-  return '<li><a href="' + esc(s.url) + '" target="_blank" rel="noopener" style="--b:' + b.b + ";--c:" + b.c + ";--f:" + b.f + '">' +
+  return '<li><a href="' + esc(s.url) + '" target="_blank" rel="noopener" style="--b:' + b.b + ";--c:" + b.c + ";--cl:" + (b.cl || b.c) + ";--f:" + b.f + '">' +
     '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-' + b.i + '"/></svg><div><b>' + b.n + "</b><span>" + esc(s.handle) + "</span></div></a></li>";
 }).join("");
 $("#mails").innerHTML = CONFIG.emails.map(function (m) {
@@ -423,19 +477,55 @@ function glitchSound() {
   } catch (e) {}
 }
 
+/* ---------- ডার্ক/লাইট সুইচ ---------- */
+
+var tg = $("#theme"), tmeta = document.querySelector('meta[name="theme-color"]');
+function setTheme(light, save) {
+  root.setAttribute("data-theme", light ? "light" : "dark");
+  tg.setAttribute("aria-checked", light ? "true" : "false");
+  if (tmeta) tmeta.content = light ? "#f6f0e4" : "#0b1622";
+  if (save) { try { localStorage.setItem("theme", light ? "light" : "dark"); } catch (e) {} }
+}
+setTheme(root.getAttribute("data-theme") === "light", false);
+tg.addEventListener("click", function () {
+  var light = root.getAttribute("data-theme") !== "light";
+  root.classList.add("tx"); setTheme(light, true); setTimeout(function () { root.classList.remove("tx"); }, 650);
+  try { var ctx = audio(); if (ctx) { var t = ctx.currentTime, m = ctx.createGain(); m.gain.value = .12; m.connect(ctx.destination); tone(ctx, m, "sine", light ? 660 : 520, light ? 990 : 340, t, .14, .6); } } catch (e) {}
+});
+
 /* ---------- ক্লিক ---------- */
-var f = $(".flip");                          /* প্রোফাইল ঘোরানো */
+var f = $(".flip"), fw = $(".fw"), flips = 0, flyT = 0;     /* প্রোফাইল ঘোরানো: প্রতিবার একই দিকে ১৮০° ঘোরে */
 f.addEventListener("click", function () {
+  flips++; f.style.setProperty("--rot", flips * 180 + "deg");
   f.classList.add("seen"); f.classList.toggle("on");
   f.setAttribute("aria-pressed", f.classList.contains("on"));
+  if (!still) { f.classList.remove("fly"); void f.offsetWidth; f.classList.add("fly"); clearTimeout(flyT); flyT = setTimeout(function () { f.classList.remove("fly"); }, 1000); }
   flipSound(f.classList.contains("on"));
 });
+
+/* ৩ডি হেলে পড়া: মাউস নাড়ালে ছবি কার্সরের দিকে তাকায়, ফোনে ছবির ওপর আঙুল টেনে হেলানো যায়। ✏️ 14 ও 10 বদলে হেলানোর পরিমাণ ঠিক করুন */
+if (!still) {
+  var tilting = false, tq = 0, tx = 0, ty = 0;
+  function tilt() { tq = 0; fw.style.setProperty("--ry", ty.toFixed(1) + "deg"); fw.style.setProperty("--rx", tx.toFixed(1) + "deg"); }
+  function aim(e) {
+    var b = fw.getBoundingClientRect(), dx = (e.clientX - (b.left + b.width / 2)) / (e.pointerType === "touch" ? b.width : innerWidth / 2), dy = (e.clientY - (b.top + b.height / 2)) / (e.pointerType === "touch" ? b.height : innerHeight / 2);
+    ty = Math.max(-1, Math.min(1, dx)) * 14; tx = -Math.max(-1, Math.min(1, dy)) * 10;
+    if (!tq) tq = requestAnimationFrame(tilt);
+  }
+  function rest() { tilting = false; ty = tx = 0; if (!tq) tq = requestAnimationFrame(tilt); }
+  addEventListener("pointermove", function (e) { if (e.pointerType === "touch") { if (tilting) aim(e); } else aim(e); });
+  fw.addEventListener("pointerdown", function (e) { if (e.pointerType === "touch") { tilting = true; aim(e); } });
+  addEventListener("pointerup", function (e) { if (e.pointerType === "touch") rest(); });
+  addEventListener("pointercancel", rest);
+  document.documentElement.addEventListener("mouseleave", rest);
+}
 
 $("#tiles").addEventListener("click", function (e) { if (e.target.closest("a")) clickTone(); });
 
 var cta = $("#showSocial"), soc = $("#social"), gl = $("#glitch"), busy = false;   /* Find me online */
 function showSocial() {
   soc.hidden = false; cta.setAttribute("aria-expanded", "true");
+  $(".ctarow").classList.add("done");
   soc.scrollIntoView({ behavior: "auto", block: "start" });
   if (!still) { soc.classList.remove("gl-in"); void soc.offsetWidth; soc.classList.add("gl-in"); }
 }
